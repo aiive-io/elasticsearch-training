@@ -1,5 +1,8 @@
 ﻿using AIIVE.BookReview.Catalogo.Domain;
 using AIIVE.BookReview.Core.Data;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace AIIVE.BookReview.Catalogo.Data.Repository
 {
@@ -17,6 +20,11 @@ namespace AIIVE.BookReview.Catalogo.Data.Repository
         public void Dispose()
         {
             _context?.Dispose();
+        }
+
+        public Task<IEnumerable<Book>> GetBooks(string term)
+        {
+            return Task.FromResult(_context.Set<Book>().Where(x => x.OriginalTitle.Contains(term)).AsEnumerable());
         }
     }
 }

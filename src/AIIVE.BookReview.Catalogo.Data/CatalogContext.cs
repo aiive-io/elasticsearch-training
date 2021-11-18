@@ -20,7 +20,7 @@ namespace AIIVE.BookReview.Catalogo.Data
         {            
             modelBuilder.Ignore<Event>();
 
-            modelBuilder.Entity<Book>().HasData(BookSeed.Create());
+            //modelBuilder.Entity<Book>().HasData(BookSeed.Create());
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(CatalogContext).Assembly);
         }
