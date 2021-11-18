@@ -104,7 +104,7 @@ namespace AIIVE.BookReview.Catalogo.Data.IntegrationTests
         [Fact]
         public void Add_Bulk_Books()
         {
-            var client = CreateElasticClient("bookstmp");
+            var client = CreateElasticClient("books");
 
             var books = BookSeed.Create();
 
