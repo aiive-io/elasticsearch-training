@@ -29,7 +29,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIIVE.BookRating.WebApi", "src\AIIVE.BookRating.WebApi\AIIVE.BookRating.WebApi.csproj", "{CEB18895-0C33-4714-BF9F-04A225CAA469}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIIVE.BookRating.WebApi", "src\AIIVE.BookRating.WebApi\AIIVE.BookRating.WebApi.csproj", "{CEB18895-0C33-4714-BF9F-04A225CAA469}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{00890F77-E7F5-4F63-B747-EC253CBAA4A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIIVE.BookReview.Catalogo.Data.IntegrationTests", "tests\AIIVE.BookReview.Catalogo.Data.IntegrationTests\AIIVE.BookReview.Catalogo.Data.IntegrationTests.csproj", "{F89DF867-2C6C-4091-9521-A7C64C80A5DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +61,10 @@ Global
 		{CEB18895-0C33-4714-BF9F-04A225CAA469}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CEB18895-0C33-4714-BF9F-04A225CAA469}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEB18895-0C33-4714-BF9F-04A225CAA469}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F89DF867-2C6C-4091-9521-A7C64C80A5DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F89DF867-2C6C-4091-9521-A7C64C80A5DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F89DF867-2C6C-4091-9521-A7C64C80A5DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F89DF867-2C6C-4091-9521-A7C64C80A5DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,6 +78,8 @@ Global
 		{6360B7A8-7AE2-4CB1-A516-7661A7EFE574} = {49EA698F-9EF5-42CE-8E5D-7DE8DAE5019A}
 		{3D388A51-8C76-4087-8132-D2D6EC1685BA} = {49EA698F-9EF5-42CE-8E5D-7DE8DAE5019A}
 		{CEB18895-0C33-4714-BF9F-04A225CAA469} = {E45F358F-2262-4AFE-8DDC-B5D2B4AF94D5}
+		{00890F77-E7F5-4F63-B747-EC253CBAA4A4} = {49EA698F-9EF5-42CE-8E5D-7DE8DAE5019A}
+		{F89DF867-2C6C-4091-9521-A7C64C80A5DA} = {00890F77-E7F5-4F63-B747-EC253CBAA4A4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {09141666-E595-49DD-A460-182E281B6730}
