@@ -37,7 +37,7 @@ namespace AIIVE.BookReview.Catalogo.Data.Seeds
 
         public static IEnumerable<object> Create()
         {
-            using var reader = new StreamReader("../../books.csv");
+            using var reader = new StreamReader("books.csv");
 
             Console.WriteLine(reader.ReadLine());
             

@@ -1,3 +1,4 @@
+using AIIVE.BookReview.Catalogo.Data.Seeds;
 using Nest;
 using System;
 using System.Collections.Generic;
@@ -103,9 +104,11 @@ namespace AIIVE.BookReview.Catalogo.Data.IntegrationTests
         [Fact]
         public void Add_Bulk_Books()
         {
-            var client = CreateElasticClient();
+            var client = CreateElasticClient("bookstmp");
 
-            
+            var books = BookSeed.Create();
+
+            var result = client.Bulk(b => b.CreateMany(books));
         }
 
 
