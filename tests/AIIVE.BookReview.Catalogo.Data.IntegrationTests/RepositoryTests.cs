@@ -1,4 +1,6 @@
+using Nest;
 using System;
+using System.Collections.Generic;
 using Xunit;
 
 namespace AIIVE.BookReview.Catalogo.Data.IntegrationTests
@@ -98,6 +100,14 @@ namespace AIIVE.BookReview.Catalogo.Data.IntegrationTests
             var result = client.Bulk(b => b.Create<Product>(s => s.Document(product)));
         }
 
+        [Fact]
+        public void Add_Bulk_Books()
+        {
+            var client = CreateElasticClient();
+
+            
+        }
+
 
         public ElasticClient CreateElasticClient(string index = "products")
         {
@@ -109,6 +119,7 @@ namespace AIIVE.BookReview.Catalogo.Data.IntegrationTests
 
             return client;
         }
+
     }
 
     public class Product
