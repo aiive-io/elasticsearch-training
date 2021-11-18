@@ -1,6 +1,8 @@
+
 ```
 GET /bookstmp/_mapping
 ```
+
 ```
 GET /bookstmp/_search
 {
@@ -13,6 +15,7 @@ GET /bookstmp/_search
   }
 }
 ```
+
 ```
 GET /bookstmp/_search
 {
@@ -30,6 +33,7 @@ GET /bookstmp/_search
   }]
 }
 ```
+
 ```
 DELETE /books
 ```
@@ -37,9 +41,11 @@ DELETE /books
 ```
 GET /books/_search
 ```
+
 ```
 GET /books/_mapping
 ```
+
 ```
 GET /books/_search
 {
@@ -50,12 +56,14 @@ GET /books/_search
   }
 }
 ```
+
 ```
 GET /books/_analyze
 {
   "text": "The Hunger Games."
 }
 ```
+
 ```
 GET /books/_analyze
 {
@@ -63,6 +71,7 @@ GET /books/_analyze
   "text": "The Hunger Games."
 }
 ```
+
 ```
 GET /books/_analyze
 {
@@ -70,6 +79,7 @@ GET /books/_analyze
   "text": "The Hunger Games."
 }
 ```
+
 ```
 GET /books/_analyze
 {
@@ -93,9 +103,11 @@ GET /books/_analyze
   "text": "The Hunger Games."
 }
 ```
+
 ```
 DELETE analyses_teste
 ```
+
 ```
 POST _reindex 
 {
@@ -103,6 +115,7 @@ POST _reindex
   "dest": {"index": "analyses_teste"}
 }
 ```
+
 ```
 PUT /analyses_teste
 {
