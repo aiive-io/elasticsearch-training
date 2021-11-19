@@ -60,6 +60,18 @@ namespace AIIVE.BookReview.Catalogo.Data.Repository
             return result.Documents;
         }
 
+        public async Task<IEnumerable<Book>> GetBooksWithAuthorAndTitleMatching(string authors, string title)
+        {
+            var query = new QueryContainer();
+            query = Query<Book>.Bool(b =>
+                b.Must(m => m.Match(mm => mm.Field(f => f.Authors).Query(authors)) && m.Match(mm => mm.Field(f => f.Title).Query(title))));            
+
+            var result = await _elasticClient.SearchAsync<Book>(s => s           
+           .Query(_ => query));
+
+            return result.Documents;
+        }
+
         public async Task<IEnumerable<Book>> GetBooksPartialAsync(string term)
         {
 
@@ -71,6 +83,27 @@ namespace AIIVE.BookReview.Catalogo.Data.Repository
 
 
             return result.Documents;
+        }
+
+
+        public async Task<PaginatedResult<IEnumerable<Book>>> GetBooksByMatchPhrase(int from, int size, string term)
+        {
+            var query = new QueryContainer();
+
+            query = Query<Book>.MatchPhrasePrefix(mp => mp.Field(f => f.Title).Query(term));
+
+            var result = await _elasticClient.SearchAsync<Book>(s => s
+           .From(from)
+           .Size(size)
+           .Query(_ => query));
+
+            return new PaginatedResult<IEnumerable<Book>>
+            {
+                Count = result.Total,
+                Data = result.Documents,
+                From = from,
+                Size = size,
+            };
         }
 
         public async Task<PaginatedResult<IEnumerable<Book>>> GetBooksByYear(int from, int size, int initialYear, int finalYear)

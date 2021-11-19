@@ -119,11 +119,18 @@ GET /books/_search
 Usando `match_phrase`:
 
 ```js
-
+{"from":1,"query":{"match_phrase":{"title":{"query":"The Hunger Games"}}},"size":10}
 ```
 
 ```csharp
+var query = new QueryContainer();
 
+query = Query<Book>.MatchPhrase(mp => mp.Field(f => f.Title).Query(term));
+
+var result = await _elasticClient.SearchAsync<Book>(s => s
+.From(from)
+.Size(size)
+.Query(_ => query));
 ```
 
 - `slop` a quantidade de valores indica quanto errado ele aceita.

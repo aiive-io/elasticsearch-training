@@ -16,6 +16,68 @@ namespace AIIVE.BookReview.Catalogo.Data.IntegrationTests
     {
 
         [Fact]
+        public async Task GetBooksWithAuthorAndTitleMatching()
+        {
+            //ARRANGE 
+            var index = "books-5";
+
+            var client = CreateElasticClient(index);
+
+            client.Indices.Delete(index);
+
+            try
+            {
+                var resultBulk = client.Bulk(b => b.CreateMany(BookSeed.Create()));
+
+                var config = Options.Create(new ElasticSearchConfiguration { Uri = new string[] { "http://localhost:9200" } });
+
+                var repo = new BookRepository(index, default, config);
+
+                //ACT
+                var paginated_books = await repo.GetBooksWithAuthorAndTitleMatching("Suzanne", "Hunger Games");
+
+                //ASSERT
+                Assert.NotEmpty(paginated_books);
+
+            }
+            finally
+            {
+                client.Indices.Delete(index);
+            }
+        }
+
+        [Fact]
+        public async Task GetBooksByMatchPhrase()
+        {
+            //ARRANGE 
+            var index = "books-5";
+
+            var client = CreateElasticClient(index);
+
+            client.Indices.Delete(index);
+
+            try
+            {
+                var resultBulk = client.Bulk(b => b.CreateMany(BookSeed.Create()));
+
+                var config = Options.Create(new ElasticSearchConfiguration { Uri = new string[] { "http://localhost:9200" } });
+
+                var repo = new BookRepository(index, default, config);
+
+                //ACT
+                var paginated_books = await repo.GetBooksByMatchPhrase(1, 10, "The Runger Games");
+
+                //ASSERT
+                Assert.NotEmpty(paginated_books.Data);
+
+            }
+            finally
+            {
+                client.Indices.Delete(index);
+            }
+        }
+
+        [Fact]
         public async Task GetBooksByYear_DeveRetornarPaginado()
         {
             //ARRANGE 

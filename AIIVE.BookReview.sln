@@ -27,6 +27,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		aula-03.md = aula-03.md
 		books.csv = books.csv
+		CRUD.md = CRUD.md
+		MAPPING_ANALYZER.md = MAPPING_ANALYZER.md
+		QUERY.md = QUERY.md
 		README.md = README.md
 	EndProjectSection
 EndProject
