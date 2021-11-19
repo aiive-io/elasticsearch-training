@@ -143,6 +143,10 @@ Usando `minimum_should_match`:
 
 Usando `must`:
 
+```js
+{"query":{"bool":{"must":[{"bool":{"must":[{"match":{"authors":{"query":"Suzanne"}}},{"match":{"title":{"query":"Hunger Games"}}}]}}]}}}
+```
+
 Usando `should`:
 
 Usando `must_not`:
@@ -195,6 +199,25 @@ GET /books/_search
         }
     }
 }
+```
+
+```js
+GET /books-nested/_search
+{
+  "query": {
+      "nested":{
+        "path": "authors",
+        "query": {
+          "bool": {
+            "must": [
+              {"match": {"authors.name": "Suzzane"}},
+              {"match": {"authors.year": 35}}
+            ]
+          }
+        }
+      }
+    }
+  }
 ```
 
 ### Referência
