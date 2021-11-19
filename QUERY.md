@@ -75,7 +75,15 @@ Usando `range` no campo `originalPublicationYear`.
 Coloque um range de exercício:
 
 ```js
+{"from":1,"query":{"range":{"originalPublicationYear":{"gt":1990.0,"lt":2000.0}}},"size":10}
+```
 
+
+
+Exemplo de pesquisa usando Range:
+
+```csharp
+Task<PaginatedResult<IEnumerable<Book>>> GetBooksByYear(int from, int size, int initialYear, int finalYear)
 ```
 
 Usando `match` podemos comparar um campo com um valor como exemplo:
@@ -111,6 +119,10 @@ GET /books/_search
 Usando `match_phrase`:
 
 ```js
+
+```
+
+```csharp
 
 ```
 

@@ -12,12 +12,12 @@ namespace AIIVE.BookReview.Catalogo.Data.Repository
     public class BookRepository : IBookRepository
     {
         private readonly CatalogContext _context;
-        private readonly IOptions<ElasticSearchConfiguration> _options;        
+        private readonly IOptions<ElasticSearchConfiguration> _options;
         private readonly ElasticClient _elasticClient;
 
         public BookRepository(string index, CatalogContext context,
             IOptions<ElasticSearchConfiguration> options)
-        {            
+        {
             _context = context;
             _options = options;
 
@@ -34,7 +34,7 @@ namespace AIIVE.BookReview.Catalogo.Data.Repository
 
         public void Dispose()
         {
-            _context?.Dispose();            
+            _context?.Dispose();
         }
 
         public Task<IEnumerable<Book>> GetBooks(string term)
@@ -62,7 +62,7 @@ namespace AIIVE.BookReview.Catalogo.Data.Repository
 
         public async Task<IEnumerable<Book>> GetBooksPartialAsync(string term)
         {
-            
+
             var result = await _elasticClient.SearchAsync<Book>(s =>
                 s.Source(source => source.Includes(i => i.Fields(
                     f => f.Id,
@@ -71,6 +71,26 @@ namespace AIIVE.BookReview.Catalogo.Data.Repository
 
 
             return result.Documents;
+        }
+
+        public async Task<PaginatedResult<IEnumerable<Book>>> GetBooksByYear(int from, int size, int initialYear, int finalYear)
+        {
+            var query = new QueryContainer();
+
+            query = Query<Book>.Range(r => r.Field(f => f.OriginalPublicationYear).GreaterThan(initialYear).LessThan(finalYear));
+
+            var result = await _elasticClient.SearchAsync<Book>(s => s
+            .From(from)
+            .Size(size)
+            .Query(_ => query));
+
+            return new PaginatedResult<IEnumerable<Book>>
+            {
+                Count = result.Total,
+                Data = result.Documents,
+                From = from,
+                Size = size,
+            };
         }
 
         public async Task<PaginatedResult<IEnumerable<Book>>> GetBooksByAuthorsAndTitle(int from, int size, string author, string title)
