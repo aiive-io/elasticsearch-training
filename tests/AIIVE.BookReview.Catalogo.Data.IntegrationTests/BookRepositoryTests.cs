@@ -15,14 +15,51 @@ namespace AIIVE.BookReview.Catalogo.Data.IntegrationTests
     public class BookRepositoryTests
     {
         [Fact]
+        public async Task GetBooksAsync_DeveRetornarPaginado()
+        {
+            //ARRANGE 
+            var index = "books-2";
+
+            var client = CreateElasticClient(index);
+
+            client.Indices.Delete(index);
+            
+            try
+            {
+                var resultBulk = client.Bulk(b => b.CreateMany(BookSeed.Create()));
+
+                var config = Options.Create(new ElasticSearchConfiguration { Uri = new string[] { "http://localhost:9200" } });
+
+                var repo = new BookRepository(index, default, config);
+
+                //ACT
+                var paginated_books = await repo.GetBooksAsync(1, 10, "2019");
+
+                //ASSERT
+                Assert.NotEmpty(paginated_books.Data);
+
+            }
+            finally
+            {
+                client.Indices.Delete(index);
+            }
+
+            
+
+        }
+
+        [Fact]
         public async Task GetBooksAsync_Termo_RetornaValores()
         {
+            //ARRANGE
             var index = "books-0";
 
             var client = CreateElasticClient(index);
 
+            client.Indices.Delete(index);
+
             try
-            {                
+            {                   
                 var resultBulk = client.Bulk(b => b.CreateMany(BookSeed.Create()));
 
                 var config = Options.Create(new ElasticSearchConfiguration { Uri = new string[] { "http://localhost:9200" } });
