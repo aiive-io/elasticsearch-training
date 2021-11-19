@@ -33,8 +33,6 @@ namespace AIIVE.BookReview.Catalogo.Data.IntegrationTests
             var index = "books-nested";
             var client = CreateElasticClient(index);
 
-            //client.Indices.Delete(index);
-
             var docs = new List<BookNested>
                 {
                     new BookNested
@@ -60,8 +58,8 @@ namespace AIIVE.BookReview.Catalogo.Data.IntegrationTests
                 var query = new QueryContainer();
 
                 query = Query<BookNested>.Nested(n => n.Path(p => p.Authors)
-                    .Query(q => q.Bool(b => b.Must(m => m.Match(mm => mm.Field(f => f.Authors.First().Name).Query("Suzzane"))
-                    && m.Match(mm => mm.Field(f => f.Authors.First().Year).Query("30"))))));
+                    .Query(q => q.Bool(b => b.Must(m => m.Match(mm => mm.Field(f => f.Authors.FirstOrDefault().Name).Query("Suzzane"))
+                    && m.Match(mm => mm.Field(f => f.Authors.FirstOrDefault().Year).Query("30"))))));
 
                 var result = await client.SearchAsync<BookNested>(s => s.Query(_ => query));
                 

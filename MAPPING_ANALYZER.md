@@ -94,8 +94,7 @@ Relacionamento pai/filho:
 ```
 PUT /<index>
 {
-    "mappings": {
-        "_doc": {
+    "mappings": {        
             "properties":{
                 "join_field": {
                     "type": "join",
@@ -104,7 +103,6 @@ PUT /<index>
                     }
                 }
             }
-        }
     }
 }
 ```
