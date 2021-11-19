@@ -9,6 +9,7 @@
     <ProjectReference Include="..\AIIVE.BookReview.Core\AIIVE.BookReview.Core.csproj" />
   </ItemGroup>
 	<ItemGroup>
+		<PackageReference Include="NEST" Version="7.15.2" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.12" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.12">
 		  <PrivateAssets>all</PrivateAssets>

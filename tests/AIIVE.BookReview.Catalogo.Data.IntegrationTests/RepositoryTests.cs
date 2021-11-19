@@ -1,4 +1,5 @@
 using AIIVE.BookReview.Catalogo.Data.Seeds;
+using Elasticsearch.Net;
 using Nest;
 using System;
 using System.Collections.Generic;
@@ -114,12 +115,22 @@ namespace AIIVE.BookReview.Catalogo.Data.IntegrationTests
 
         public ElasticClient CreateElasticClient(string index = "products")
         {
+            var uris = new[] { new Uri("http://localhost:9200") };
+
+            var pool = new StaticConnectionPool(uris);
+
             var settings = new ConnectionSettings(
-                new Uri("http://localhost:9200"))
+                pool)
                 .DefaultIndex(index);
 
             var client = new ElasticClient(settings);
 
+            var response = client.Nodes.Info();
+
+            foreach (var node in response.Nodes)
+            {
+                Console.WriteLine($"{node.Key} http publish_address is: {node.Value.Http.PublishAddress}");
+            }
             return client;
         }
 

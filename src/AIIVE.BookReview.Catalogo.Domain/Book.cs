@@ -4,14 +4,14 @@ namespace AIIVE.BookReview.Catalogo.Domain
 {
     public class Book : Entity<long>, IAggregateRoot
     {
-        public string Authors { get; private set; }
+        public string Authors { get;  set; }
 
         public string ISBN { get; private set; }
 
         public int? OriginalPublicationYear { get; private set; }
 
         public string OriginalTitle { get; private set; }
-        public string Title { get; private set; }
+        public string Title { get;  set; }
 
         public string LanguageCode { get; private set; }
 

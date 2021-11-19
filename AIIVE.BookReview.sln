@@ -25,6 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIIVE.BookReview.Catalogo.D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CBBD1A56-BDBD-4771-B58C-282FB7225AFE}"
 	ProjectSection(SolutionItems) = preProject
+		aula-03.md = aula-03.md
 		books.csv = books.csv
 		README.md = README.md
 	EndProjectSection
@@ -33,7 +34,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIIVE.BookRating.WebApi", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{00890F77-E7F5-4F63-B747-EC253CBAA4A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIIVE.BookReview.Catalogo.Data.IntegrationTests", "tests\AIIVE.BookReview.Catalogo.Data.IntegrationTests\AIIVE.BookReview.Catalogo.Data.IntegrationTests.csproj", "{F89DF867-2C6C-4091-9521-A7C64C80A5DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIIVE.BookReview.Catalogo.Data.IntegrationTests", "tests\AIIVE.BookReview.Catalogo.Data.IntegrationTests\AIIVE.BookReview.Catalogo.Data.IntegrationTests.csproj", "{F89DF867-2C6C-4091-9521-A7C64C80A5DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

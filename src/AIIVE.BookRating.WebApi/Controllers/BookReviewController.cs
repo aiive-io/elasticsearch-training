@@ -26,5 +26,13 @@ namespace AIIVE.BookReview.WebApi.Controllers
             var result = _bookRepository.GetBooks(term);
             return await result;
         }
+
+        [HttpGet("{id}")]
+        public async Task<Book> GetAsync([FromRoute] long id)
+        {
+            var result = _bookRepository.GetById(id);
+            return await result;
+        }
+
     }
 }

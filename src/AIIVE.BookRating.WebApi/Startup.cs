@@ -33,6 +33,8 @@ namespace AIIVE.BookRating.WebApi
             services.AddDbContext<CatalogContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddOptions<ElasticSearchConfiguration>("ElasticSearch");
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
