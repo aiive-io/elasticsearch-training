@@ -14,6 +14,41 @@ namespace AIIVE.BookReview.Catalogo.Data.IntegrationTests
 {
     public class BookRepositoryTests
     {
+
+        [Fact]
+        public async Task GetBooksByAuthorsAndTitle_DeveRetornarPaginado()
+        {
+            //ARRANGE 
+            var index = "books-3";
+
+            var client = CreateElasticClient(index);
+
+            client.Indices.Delete(index);
+
+            try
+            {
+                var resultBulk = client.Bulk(b => b.CreateMany(BookSeed.Create()));
+
+                var config = Options.Create(new ElasticSearchConfiguration { Uri = new string[] { "http://localhost:9200" } });
+
+                var repo = new BookRepository(index, default, config);
+
+                //ACT
+                var paginated_books = await repo.GetBooksByAuthorsAndTitle(1, 10, "Suzanne", "Harry");
+
+                //ASSERT
+                Assert.NotEmpty(paginated_books.Data);
+
+            }
+            finally
+            {
+                client.Indices.Delete(index);
+            }
+
+
+
+        }
+
         [Fact]
         public async Task GetBooksAsync_DeveRetornarPaginado()
         {

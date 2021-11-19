@@ -62,6 +62,7 @@ namespace AIIVE.BookReview.Catalogo.Data.Repository
 
         public async Task<IEnumerable<Book>> GetBooksPartialAsync(string term)
         {
+            
             var result = await _elasticClient.SearchAsync<Book>(s =>
                 s.Source(source => source.Includes(i => i.Fields(
                     f => f.Id,
@@ -72,13 +73,42 @@ namespace AIIVE.BookReview.Catalogo.Data.Repository
             return result.Documents;
         }
 
+        public async Task<PaginatedResult<IEnumerable<Book>>> GetBooksByAuthorsAndTitle(int from, int size, string author, string title)
+        {
+            var query = new QueryContainer();
+
+            query |= Query<Book>.Match(m => m.Field(f => f.Title).Query(title));
+
+            if(string.IsNullOrEmpty(title))
+                query |= Query<Book>.Match(m => m.Field(f => f.Authors).Query(author));
+
+            var result = await _elasticClient.SearchAsync<Book>(s =>
+           s.Source(source => source.Includes(i => i.Field(f => f.Authors)))
+           .From(from)
+           .Size(size)
+           .Query(_ => query));
+
+            return new PaginatedResult<IEnumerable<Book>>
+            {
+                Count = result.Total,
+                Data = result.Documents,
+                From = from,
+                Size = size,
+            };
+        }
+
         public async Task<PaginatedResult<IEnumerable<Book>>> GetBooksAsync(int from, int size, string term)
         {
+            var query = new QueryContainer();
+
+            query &= Query<Book>.Match(m => m.Field(f => f.OriginalPublicationYear).Query(term));
+
             var result = await _elasticClient.SearchAsync<Book>(s =>
             s.Source(source => source.Includes(i => i.Field(f => f.Authors)))
             .From(from)
             .Size(size)
-            .Query(q => q.Match(m => m.Field(mf => mf.OriginalPublicationYear == int.Parse(term)))));
+            .Query(_ => query));
+
             return new PaginatedResult<IEnumerable<Book>>
             {
                 Count = result.Total,
