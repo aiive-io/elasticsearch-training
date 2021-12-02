@@ -36,6 +36,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIIVE.BookRating.WebApi", "src\AIIVE.BookRating.WebApi\AIIVE.BookRating.WebApi.csproj", "{CEB18895-0C33-4714-BF9F-04A225CAA469}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{00890F77-E7F5-4F63-B747-EC253CBAA4A4}"
+	ProjectSection(SolutionItems) = preProject
+		Exercicios.md = Exercicios.md
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIIVE.BookReview.Catalogo.Data.IntegrationTests", "tests\AIIVE.BookReview.Catalogo.Data.IntegrationTests\AIIVE.BookReview.Catalogo.Data.IntegrationTests.csproj", "{F89DF867-2C6C-4091-9521-A7C64C80A5DA}"
 EndProject

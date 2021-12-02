@@ -219,7 +219,7 @@ namespace AIIVE.BookReview.Catalogo.Data.IntegrationTests
                 var repo = new BookRepository(index, default, config);
 
                 //ACT
-                var paginated_books = await repo.GetBooksAsync(1, 10, "2019");
+                var paginated_books = await repo.GetBooksAsync(1, 10, "2000");
 
                 //ASSERT
                 Assert.NotEmpty(paginated_books.Data);

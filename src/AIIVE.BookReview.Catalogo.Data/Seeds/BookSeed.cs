@@ -50,19 +50,22 @@ namespace AIIVE.BookReview.Catalogo.Data.Seeds
 
                 Console.WriteLine(properties[8]);
 
-                int.TryParse(properties[8], out int year);
-
-                yield return new Book(
+                
+                var book = new Book(
                     id: long.Parse(properties[0]),
                     authors: properties[7],
-                    isbn: properties[5],
-                    originalPublicationYear: year,
+                    isbn: properties[5],                    
                     originalTitle: properties[9],
                     title: properties[10],
                     languageCode: properties[11],
                     averageRating: float.Parse(properties[12]),
                     imageUrl: properties[21],
                     smallImageUrl: properties[22]);
+
+                if (int.TryParse(properties[8], out int year))
+                    book.OriginalPublicationYear = year;
+
+                yield return book;
             }
         }
     }

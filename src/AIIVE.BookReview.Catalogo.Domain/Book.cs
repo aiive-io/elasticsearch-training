@@ -6,20 +6,20 @@ namespace AIIVE.BookReview.Catalogo.Domain
     {
         public string Authors { get;  set; }
 
-        public string ISBN { get; private set; }
+        public string ISBN { get; set; }
 
-        public int? OriginalPublicationYear { get; private set; }
+        public int? OriginalPublicationYear { get; set; }
 
-        public string OriginalTitle { get; private set; }
+        public string OriginalTitle { get; set; }
         public string Title { get;  set; }
 
-        public string LanguageCode { get; private set; }
+        public string LanguageCode { get; set; }
 
-        public float AverageRating { get; private set; }
+        public float AverageRating { get;  set; }
 
-        public string ImageUrl { get; private set; }
+        public string ImageUrl { get;  set; }
 
-        public string SmallImageUrl { get; private set; }
+        public string SmallImageUrl { get;  set; }
 
         public Book()
         {
@@ -28,14 +28,14 @@ namespace AIIVE.BookReview.Catalogo.Domain
 
         public Book(
             string authors,
-            string isbn,
-            int originalPublicationYear,
+            string isbn,            
             string originalTitle,
             string title,
             string languageCode,
             float averageRating,
             string imageUrl,
-            string smallImageUrl)
+            string smallImageUrl,
+            int? originalPublicationYear = null)
         {
             Authors = authors;
             ISBN = isbn;
@@ -50,23 +50,23 @@ namespace AIIVE.BookReview.Catalogo.Domain
         public Book(
             long id,
             string authors,
-            string isbn,
-            int originalPublicationYear,
+            string isbn,            
             string originalTitle,
             string title,
             string languageCode,
             float averageRating,
             string imageUrl,
-            string smallImageUrl) : this(
+            string smallImageUrl,
+            int? originalPublicationYear = null) : this(
             authors,
-            isbn,
-            originalPublicationYear,
+            isbn,            
             originalTitle,
             title,
             languageCode,
             averageRating,
             imageUrl,
-            smallImageUrl)
+            smallImageUrl,
+            originalPublicationYear)
         {
             Id = id;            
         }

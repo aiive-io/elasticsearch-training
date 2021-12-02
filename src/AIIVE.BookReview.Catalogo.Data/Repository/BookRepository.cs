@@ -152,16 +152,9 @@ namespace AIIVE.BookReview.Catalogo.Data.Repository
 
         public async Task<PaginatedResult<IEnumerable<Book>>> GetBooksAsync(int from, int size, string term)
         {
-            var query = new QueryContainer();
-
-            query &= Query<Book>.Match(m => m.Field(f => f.OriginalPublicationYear).Query(term));
-
-            var result = await _elasticClient.SearchAsync<Book>(s =>
-            s.Source(source => source.Includes(i => i.Field(f => f.Authors)))
-            .From(from)
-            .Size(size)
-            .Query(_ => query));
-
+            var result = await _elasticClient.SearchAsync<Book>(s => s          
+               .Query(q => q.Match(m => m.Field(f => f.OriginalPublicationYear).Query(term))));            
+            
             return new PaginatedResult<IEnumerable<Book>>
             {
                 Count = result.Total,
